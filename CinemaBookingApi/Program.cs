@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -80,7 +79,7 @@ builder.Services.AddAuthentication(options =>
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer ="http://localhost:7069",
+            ValidIssuer = "http://localhost:7069", // builder.Configuration.GetValue 
             ValidAudience = "http://localhost:7069",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("cine#.m+aDbJw28tAuthe?#nticaitonKey"))
         };
@@ -89,6 +88,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddDbContext<CinemaDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("cinemadb")));
 
+builder.Services.AddStackExchangeRedisCache(opt => 
+    opt.Configuration = builder.Configuration.GetConnectionString("Cache"));
 
 var app = builder.Build();
 

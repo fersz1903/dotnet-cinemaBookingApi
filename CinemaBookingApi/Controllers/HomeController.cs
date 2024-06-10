@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace CinemaBookingApi{
     public class HomeController : ControllerBase
@@ -15,13 +16,23 @@ namespace CinemaBookingApi{
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
 
+        private readonly IDistributedCache _cache;
+
+        private DistributedCacheEntryOptions cacheopts;
+
         public HomeController(ILogger<HomeController> logger, 
         CinemaDbContext context,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        IDistributedCache cache)
         {
             _logger = logger;
             _context = context;
             _configuration = configuration;
+            _cache = cache;
+
+            cacheopts = new DistributedCacheEntryOptions{
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10)
+            };
         }
 
 
@@ -35,6 +46,7 @@ namespace CinemaBookingApi{
                 UserId = s.User != null ? s.User.Id : (long?)null 
             })
             .ToListAsync();
+
             return seats;
         }
             
@@ -124,5 +136,31 @@ namespace CinemaBookingApi{
 
             return Ok("Booking Cancelled");
         }
+
+
+        [HttpGet("check-seat")]
+        public async Task<IActionResult> CheckSeatAvailability(int seatId)
+        {
+            var cacheKey = $"seat_{seatId}";
+            var isBooked = await _cache.GetStringAsync(cacheKey);
+
+            if (isBooked == null)
+            {
+                var seat = await _context.CinemaSeats.FindAsync(seatId);
+                System.Console.WriteLine("FROM POSTGRE");
+                if (seat == null)
+                {
+                    return NotFound();
+                }
+
+                isBooked = seat.IsBooked.ToString();
+                await _cache.SetStringAsync(cacheKey, isBooked,cacheopts);
+            }
+            System.Console.WriteLine("FROM REDIS");
+
+            return Ok(new { SeatId = seatId, IsBooked = bool.Parse(isBooked) });
+        }
     }
+
+
 }

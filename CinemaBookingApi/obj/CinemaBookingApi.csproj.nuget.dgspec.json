@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/berke/furkan/dotnet/cinemaBookingApp/CinemaBookingApi/CinemaBookingApi.csproj": {}
+    "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\CinemaBookingApi\\CinemaBookingApi.csproj": {}
   },
   "projects": {
-    "/home/berke/furkan/dotnet/cinemaBookingApp/CinemaBookingApi/CinemaBookingApi.csproj": {
+    "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\CinemaBookingApi\\CinemaBookingApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/berke/furkan/dotnet/cinemaBookingApp/CinemaBookingApi/CinemaBookingApi.csproj",
+        "projectUniqueName": "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\CinemaBookingApi\\CinemaBookingApi.csproj",
         "projectName": "CinemaBookingApi",
-        "projectPath": "/home/berke/furkan/dotnet/cinemaBookingApp/CinemaBookingApi/CinemaBookingApi.csproj",
-        "packagesPath": "/home/berke/.nuget/packages/",
-        "outputPath": "/home/berke/furkan/dotnet/cinemaBookingApp/CinemaBookingApi/obj/",
+        "projectPath": "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\CinemaBookingApi\\CinemaBookingApi.csproj",
+        "packagesPath": "C:\\Users\\Furkan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\CinemaBookingApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/berke/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Furkan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +47,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
               "target": "Package",
               "version": "[8.0.6, )"
             },
@@ -80,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

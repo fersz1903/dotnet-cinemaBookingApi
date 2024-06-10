@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  cinemabookingapi:
+    build:
+      context: .
+      dockerfile: CinemaBookingApi/Dockerfile
+    container_name: cinemabookingapi
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=172.17.0.2;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
+
+  userauthapi:
+    build:
+      context: .
+      dockerfile: UserAuthApi/Dockerfile
+    container_name: userauthapi
+    ports:
+      - "5002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=172.17.0.2;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
+      - Redis__ConnectionString=redisCache:6379
+
+  postgres:
+    image: postgres:alpine3.20
+    container_name: postgredb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgredb12
+      POSTGRES_DB: cinemadb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    container_name: redisCache
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres-data:
