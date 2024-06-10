@@ -1,0 +1,9 @@
+# .NET Core build folders
+CinemaBookingApi/bin/
+UserAuthApi/bin/
+
+#email token
+UserAuthApi/token.json/
+
+#firebase credentials
+UserAuthApi/credentials.json

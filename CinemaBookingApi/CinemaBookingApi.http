@@ -1,0 +1,6 @@
+@CinemaBookingApi_HostAddress = http://localhost:5219
+
+GET {{CinemaBookingApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
