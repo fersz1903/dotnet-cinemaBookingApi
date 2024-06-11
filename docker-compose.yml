@@ -14,6 +14,14 @@ services:
     networks:
       - mynetwork
 
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - mynetwork
+
   userauthapi:
     build:
       context: .
@@ -39,6 +47,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__cinemadb=Server=postgredb;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
+      - ConnectionStrings__Cache=redis:6379
     depends_on:
       - postgredb
     networks:
