@@ -3702,26 +3702,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Furkan\\.nuget\\packages\\": {}
+    "/home/berke/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\UserAuthApi\\UserAuthApi.csproj",
+      "projectUniqueName": "/home/berke/furkan/dotnet/cinemaBookingApp/UserAuthApi/UserAuthApi.csproj",
       "projectName": "UserAuthApi",
-      "projectPath": "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\UserAuthApi\\UserAuthApi.csproj",
-      "packagesPath": "C:\\Users\\Furkan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Furkan\\Desktop\\dotnet-cinemaBookingApi\\UserAuthApi\\obj\\",
+      "projectPath": "/home/berke/furkan/dotnet/cinemaBookingApp/UserAuthApi/UserAuthApi.csproj",
+      "packagesPath": "/home/berke/.nuget/packages/",
+      "outputPath": "/home/berke/furkan/dotnet/cinemaBookingApp/UserAuthApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Furkan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/berke/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3802,7 +3800,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,46 +1,57 @@
 version: "3.8"
 
 services:
-  cinemabookingapi:
-    build:
-      context: .
-      dockerfile: CinemaBookingApi/Dockerfile
-    container_name: cinemabookingapi
-    ports:
-      - "5001:80"
+  postgredb:
+    image: postgres:alpine3.20
+    container_name: postgredb
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=172.17.0.2;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
+      POSTGRES_PASSWORD: postgredb12
+      POSTGRES_DB: cinemadb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
 
   userauthapi:
     build:
       context: .
       dockerfile: UserAuthApi/Dockerfile
     container_name: userauthapi
-    ports:
-      - "5002:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=172.17.0.2;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
-      - Redis__ConnectionString=redisCache:6379
+      - ConnectionStrings__cinemadb=Server=postgredb;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
+    depends_on:
+      - postgredb
+    networks:
+      - mynetwork
+    command: >
+      sh -c "dotnet ef database update && dotnet UserAuthApi.dll"
+    ports:
+      - "5002:81"
 
-  postgres:
-    image: postgres:alpine3.20
-    container_name: postgredb
+  cinemabookingapi:
+    build:
+      context: .
+      dockerfile: CinemaBookingApi/Dockerfile
+    container_name: cinemabookingapi
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgredb12
-      POSTGRES_DB: cinemadb
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__cinemadb=Server=postgredb;Port=5432;Database=cinemadb;User Id=postgres;Password=postgredb12;
+    depends_on:
+      - postgredb
+    networks:
+      - mynetwork
+    command: >
+      sh -c "dotnet ef database update && dotnet CinemaBookingApi.dll"
     ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - "5001:80"
 
-  redis:
-    image: redis:latest
-    container_name: redisCache
-    ports:
-      - "6379:6379"
+networks:
+  mynetwork:
+    external: true
 
 volumes:
-  postgres-data:
+  postgres_data:
+# aynı network yapılandırması ile ayağa kaldır
