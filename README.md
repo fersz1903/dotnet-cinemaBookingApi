@@ -9,9 +9,9 @@ komutu ile konteynerler ayağa kaldırılabilir.
 
 Konteynerler çalışmaya başladıktan sonra
 
-```docker cp /path/to/your/dump.sql postgredb:/dump.sql``` Komutu ile veritabanı oluşturma dosyasını docker konteynerine kopyalayın,
-```docker exec -it postgredb bash``` Komutu ile postgre konteynerine bağlanın,
-```psql -U postgres -d cinemadb -f /dump.sql``` Komutu ile dosyayı uygulayıp veritabanını oluşturun.
+- ```docker cp /path/to/your/dump.sql postgredb:/dump.sql``` Komutu ile veritabanı oluşturma dosyasını docker konteynerine kopyalayın,
+- ```docker exec -it postgredb bash``` Komutu ile postgre konteynerine bağlanın,
+- ```psql -U postgres -d cinemadb -f /dump.sql``` Komutu ile dosyayı uygulayıp veritabanını oluşturun.
 
 Tüm bu aşamalardan sonra uygulamanın sorunsuz bir şekilde çalışması beklenmektedir.
 
