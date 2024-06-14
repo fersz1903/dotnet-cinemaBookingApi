@@ -1,6 +1,6 @@
 ## Not
-Proje ayağa kaldırılmadan önce 5001, 5002, 5433, 6379 portlarının başka process tarafından kullanılmadığından emin olun.
-Ayrıca ```docker network create mynetwork``` komutu ile uygulama için bir docker ağı oluşturulmalıdır.
+- Proje ayağa kaldırılmadan önce 5001, 5002, 5433, 6379 portlarının başka process tarafından kullanılmadığından emin olun.
+- Ayrıca ```docker network create mynetwork``` komutu ile uygulama için bir docker ağı oluşturulmalıdır.
 
 ## Uygulamayı Başlatma
 Proje klasörü içerisinde:
